@@ -75,29 +75,32 @@ const addDropdownItems = () => {
 $('#keyword-dropdown').on('change', hideAnimals);
  
 // This where we left off of lab 03
-// $('#sort').on('change', sortAnimals);
+$('#sort').on('change', sortAnimals);
  
-// function sortAnimals(){
-//   const selectedSort = $(this).val();
-//   console.log(selectedSort);
+function sortAnimals(searchableKey){
+  const selectedSort = $(this).val();
+  console.log(selectedSort);
  
-//   hornedAnimals.sort( (a, b) => {
-//     if(a < b) {
-//       return 1;
-//     } else if (a > b) {
-//       return -1;
-//     } else {
-//       return 0;
-//     }
-//   })
-//   return hornedAnimals;
+  hornedAnimals.sort( (left, right) => {
+    if(left[searchableKey] < right[searchableKey]) {
+      return 1;
+    } else if (left[searchableKey] > right[searchableKey]) {
+      return -1;
+    } else {
+      return 0;
+    }
+  })
+  return hornedAnimals;
  
-// }
+}
  
-// $('main').empty();
+$('main').empty();
+
+hornedAnimals.forEach(hornedAnimalsValue => hornedAnimalsValue.sortAnimals());
+addDropdownItems();
+
  
-// hornedAnimals.forEach(hornedAnimalsValue => hornedAnimalsValue.sortAnimals());
- 
+
 function hideAnimals(){
 const selectedKeyword = $(this).val();
 console.log(selectedKeyword);
